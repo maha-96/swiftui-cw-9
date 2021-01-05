@@ -15,27 +15,14 @@ struct ContentView: View {
             
             
             
-            List{
+            List(movies){ movie in
                 NavigationLink(
                     
-                    destination: moviedetailview(moviename: "Aladdin", moviecharacters: ["Aladdin","Jasmin","Genie"]),
+                    destination: moviedetailview(movie: movie),
                     label: {
-                        movielist(moviename: "Aladdin", moviecharacters: ["Aladdin","Jasmin","Genie"])
+                        movielist(movie: movie)
                     })
-                
-                NavigationLink(
-                    destination: moviedetailview(moviename: "Coco", moviecharacters: ["Mama Coco","Miguel","Mama Imelda"]),
-                    label: {
-                        movielist(moviename: "Coco", moviecharacters: ["Mama Coco","Miguel","Mama Imelda Rivera"])
-                    })
-                NavigationLink(
-                    destination: moviedetailview(moviename: "Toy story", moviecharacters: ["Woody","BuzzLight Year","Jessie"]),
-                    label: {
-                        movielist(moviename: "Toy story", moviecharacters: ["Woody","BuzzLight Year","Jessie"])
-                        
-                    })
-                    
-                
+                                    
             }
             
             .navigationBarTitle("Movies")
@@ -53,12 +40,11 @@ struct ContentView_Previews: PreviewProvider {
 
 
 struct movielist: View {
-    let moviename: String
-    let moviecharacters: [String]
+    let movie: Movie
     var body: some View {
         
         HStack(alignment: .center){
-            Image(moviename)
+            Image(movie.name)
                 .resizable()
                 // .scaledToFit()
                 .frame(width: 90, height: 90)
@@ -66,9 +52,9 @@ struct movielist: View {
                 .shadow(radius: /*@START_MENU_TOKEN@*/20/*@END_MENU_TOKEN@*/)
             
             VStack(alignment: .leading){
-                Text(moviename)
+                Text(movie.name)
                     .font(.largeTitle)
-                Text(moviecharacters.joined(separator: ","))
+                Text(movie.characters.joined(separator: ","))
             }
             
             
